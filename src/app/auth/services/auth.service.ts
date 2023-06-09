@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, filter, map, tap } from 'rxjs';
 import { CurrentUser } from '../interfaces/currentUser.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/app/environments/environments';
@@ -15,6 +15,16 @@ export class AuthService {
   // ? what is behaviorSubject? it is a representation of streams. it is a stream that has a default value. in this case default value is undefined. this gets edited inside setCurrentUser method.
   // * it is either Currentuser | null | undefined bc undefined means we still havent done any fetching. once we have, the its either CurrentUser | null
   currentUser$ = new BehaviorSubject<CurrentUser | null | undefined>(undefined);
+
+  // * here we transofrm the currentUser$ value to boolean:
+  isLoggedIn$ = this.currentUser$.pipe(
+    filter((currentUser) => {
+      return currentUser !== undefined;
+    }),
+    map((currentUser) => {
+      return Boolean(currentUser);
+    })
+  );
 
   getCurrentUser(): Observable<CurrentUser> {
     return this.http.get<CurrentUser>(`${environment.baseUrl}/user`);

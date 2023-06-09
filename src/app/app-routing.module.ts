@@ -9,6 +9,15 @@ const routes: Routes = [
 
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'pm',
+    // canActivate: [privateGuard],
+
+    loadChildren: () =>
+      import('./project-management/project-management.module').then(
+        (m) => m.ProjectManagementModule
+      ),
+  },
   // {
   //   path: 'heroes',
 

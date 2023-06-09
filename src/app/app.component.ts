@@ -21,9 +21,5 @@ export class AppComponent implements OnInit {
         this.authService.setCurrentUser(null);
       },
     });
-
-    this.authService.currentUser$.subscribe((res) => {
-      console.log('oooo:', res);
-    });
   }
 }

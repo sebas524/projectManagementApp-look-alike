@@ -45,7 +45,7 @@ export class LoginPageComponent {
         // * save user on whole app:
         this.authService.setCurrentUser(currentUser);
         this.error = null;
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/pm/boards');
       },
       error: (err: HttpErrorResponse) => {
         // * because we know errors come as an array from backend:

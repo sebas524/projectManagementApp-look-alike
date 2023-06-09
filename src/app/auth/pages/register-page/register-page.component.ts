@@ -47,7 +47,7 @@ export class RegisterPageComponent {
         // * save user on whole app:
         this.authService.setCurrentUser(currentUser);
         // * take user to:
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/pm/boards');
       },
       error: (err: HttpErrorResponse) => {
         // * because we know errors come as an array from backend:
