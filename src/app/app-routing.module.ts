@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFound404Component } from './shared/pages/page-not-found404/page-not-found404.component';
 import { HomePageComponent } from './shared/pages/home-page/home-page.component';
+import { privateGuard } from './auth/guards/private.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'pm',
-    // canActivate: [privateGuard],
+    canActivate: [privateGuard],
 
     loadChildren: () =>
       import('./project-management/project-management.module').then(

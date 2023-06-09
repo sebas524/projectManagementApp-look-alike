@@ -10,11 +10,18 @@ export const privateGuard: CanActivateFn = (route, state) => {
   return authService.isLoggedIn$.pipe(
     map((isLoggedIn) => {
       if (!isLoggedIn) {
-        router.navigateByUrl('/');
+        // * so, if not logged in, redirect then apply guard:
+        router.navigateByUrl('/home');
 
-        return true;
+        return false;
+        // * in other words:CANT ACCESS ROUTE
       }
-      return false;
+      // * else, dont apply guard:
+
+      // router.navigateByUrl('/pm/boards');
+      // router.navigateByUrl('/auth');
+
+      return true;
     })
   );
 };
