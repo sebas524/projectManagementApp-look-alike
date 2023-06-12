@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFound404Component } from './shared/pages/page-not-found404/page-not-found404.component';
 import { HomePageComponent } from './shared/pages/home-page/home-page.component';
 import { privateGuard } from './auth/guards/private.guard';
+import { publicGuard } from './auth/guards/public.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
+    canActivate: [publicGuard],
 
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
@@ -27,6 +29,8 @@ const routes: Routes = [
   // },
   {
     path: 'home',
+    canActivate: [publicGuard],
+
     component: HomePageComponent,
   },
   {

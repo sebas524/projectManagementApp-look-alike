@@ -16,7 +16,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.isLoggedInSubs = this.authService.isLoggedIn$.subscribe(
       (isLoggedIn) => {
         if (isLoggedIn) {
-          this.router.navigateByUrl('/pm/boards');
+          // this.router.navigateByUrl('/pm/boards');
         }
       }
     );
